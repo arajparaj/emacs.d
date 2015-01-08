@@ -135,27 +135,12 @@
 ;; Always split horizontally
 (setq split-height-threshold most-positive-fixnum)
 
-;; Mac specific stuff
-(when (eq system-type 'darwin)
-  ;; "Mac hook"
-  (setq mac-command-modifier 'control
-        mac-option-modifier 'meta
-        ns-use-srgb-colorspace t
-        ns-alternate-modifier 'meta
-        ns-auto-hide-menu-bar nil
-        ns-command-modifier 'control
-        ns-control-modifier 'control
-        ns-function-modifier 'control))
 
 ;; No bars and buttons on linux, show a menu bar on mac anyway
-(if (eq system-type 'darwin)
-    (menu-bar-mode t)
-  (menu-bar-mode -1))
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
 
-(when window-system
-  (scroll-bar-mode -1)
-  (tool-bar-mode -1)
-  (tooltip-mode -1))
 
 ;; backup files
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
