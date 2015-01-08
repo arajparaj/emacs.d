@@ -651,3 +651,8 @@ Emacs lisp really need namespaces and closures.")
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;; Delay for scrolling
+(setq scroll-step 1)
+(setq linum-delay t)
+(setq scroll-conservatively 10000)
