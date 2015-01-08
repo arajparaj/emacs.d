@@ -1,5 +1,6 @@
 ## My emacs configuration
 Author : Jaseem Abid <jaseemabid@gmail.com>
+
 Edited by : Araj P Raju <arajparaj@gmail.com>
 
 Emacs configuration files rebuild for Emacs 24.
