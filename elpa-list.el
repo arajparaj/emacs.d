@@ -3,7 +3,6 @@
                           auto-indent-mode
                           cider
                           cl-lib
-                          clojure-mode
                           coffee-mode
                           desktop
                           diminish
@@ -25,7 +24,6 @@
                           god-mode
                           haml-mode
                           handlebars-mode
-                          haskell-mode
                           httpcode
                           jedi
                           js2-mode

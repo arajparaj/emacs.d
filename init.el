@@ -3,15 +3,16 @@
 ;; -*- lisp -*-
 ;; ~/.emacs.d/init.el
 ;; Jaseem Abid <jaseemabid@gmail.com>
+;; Edited by Araj P Raju <arajparaj@gmail.com>
 ;; ------------------------------------
 
 ;; --------
 ;; Identity
 ;; --------
-(setq init-file-user "jaseem"
-      user-full-name "Jaseem Abid"
-      user-nick "jaseemabid"
-      user-mail-address "jaseemabid@gmail.com")
+(setq init-file-user "arajparaj"
+      user-full-name "Araj P Raju"
+      user-nick "arajparaj"
+      user-mail-address "arajparaj@gmail.com")
 
 ;; --------
 ;; Encoding
@@ -105,7 +106,7 @@
 ;; Set the default browser to Chrome on linux
 (when (eq system-type 'gnu/linux)
   (setq browse-url-browser-function 'browse-url-generic
-        browse-url-generic-program "google-chrome"))
+        browse-url-generic-program "firefox"))
 
 ;; Make y/n suffice for yes/no q
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -116,8 +117,8 @@
 (setq font-lock-maximum-decoration t)
 ;; Larger fonts for the mac
 (if (eq system-type 'darwin)
-    (set-frame-font "Inconsolata-14")
-  (set-frame-font "Inconsolata-11"))
+    (set-frame-font "Inconsolata-15")
+  (set-frame-font "Inconsolata-14"))
 
 ;; --------------
 ;; Display tweaks
@@ -346,29 +347,6 @@
 
 (global-set-key (kbd "<escape>") 'god-local-mode)
 
-;; Haskell mode
-(setq haskell-indent-spaces 4)
-(setq haskell-mode-hook '(imenu-add-menubar-index
-                          turn-on-eldoc-mode
-                          turn-on-haskell-doc
-                          turn-on-haskell-indent
-                          turn-on-haskell-doc-mode))
-
-;; Ignore compiled Haskell files in filename completions
-(add-to-list 'completion-ignored-extensions ".hi")
-
-;; Haskell shell stuff
-(eval-after-load "haskell-mode"
-  '(progn
-     (setq haskell-interactive-popup-errors nil)
-     (define-key haskell-mode-map (kbd "C-x C-d") nil)
-     (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
-     (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-file)
-     (define-key haskell-mode-map (kbd "C-c C-b") 'haskell-interactive-switch)
-     (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
-     (define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
-     (define-key haskell-mode-map (kbd "C-c M-.") nil)
-     (define-key haskell-mode-map (kbd "C-c C-d") nil)))
 
 ;; html-mode
 ;; Better navigation
@@ -645,8 +623,6 @@ Emacs lisp really need namespaces and closures.")
   (when (file-readable-p private-file)
     (load-file private-file)))
 
-;; Load ERC late, after private
-(load-file "~/.emacs.d/erc.el")
 
 ;; Custom theme
 (defun j/toggle-theme ()
@@ -662,3 +638,16 @@ Emacs lisp really need namespaces and closures.")
 
 (if window-system
     (load-theme 'angel-light t))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-enabled-themes (quote (angel-dark)))
+ '(custom-safe-themes (quote ("6a0aa8328d95b9a05b42d463c2a406b71dd3c3076321f9c38bd87c5340c7669c" default))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
