@@ -71,6 +71,7 @@
 (require 'web-beautify)
 (require 'yasnippet)
 
+
 ;; -----------------
 ;; General settings
 ;; -----------------
@@ -103,7 +104,7 @@
               tab-width 4
               truncate-lines t)
 
-;; Set the default browser to Chrome on linux
+;; Set the default browser to firefox on linux
 (when (eq system-type 'gnu/linux)
   (setq browse-url-browser-function 'browse-url-generic
         browse-url-generic-program "firefox"))
@@ -116,7 +117,7 @@
 ;; ----------------------
 (setq font-lock-maximum-decoration t)
 ;; Larger fonts for the mac
-(if (eq system-type 'darwin)
+(if (eq system-type 'gnu/linux)
     (set-frame-font "Inconsolata-15")
   (set-frame-font "Inconsolata-14"))
 
@@ -124,19 +125,13 @@
 ;; Display tweaks
 ;; --------------
 
-;; Set the name of the host and current path/file in title bar:
-(setq frame-title-format
-      (list (format "%s %%S: %%j " (system-name))
-            '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
-
 ;; Prevent accidentally suspending the frame
 (global-unset-key (kbd "C-x C-z"))
 
 ;; Always split horizontally
-(setq split-height-threshold most-positive-fixnum)
+(setq split-width-threshold 0)
 
-
-;; No bars and buttons on linux, show a menu bar on mac anyway
+;; No bars and buttons on linux
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
@@ -295,11 +290,6 @@
   (lambda ()
     (define-key dired-mode-map (kbd "C-x d") 'bury-buffer)))
 
-;; Edit server
-;; Chrome extension[1]  to edit textareas in Emacs
-(setq edit-server-default-major-mode 'org-mode
-      edit-server-new-frame nil)
-(edit-server-start)
 
 ;; emacs-lisp-mode
 (global-set-key (kbd "C-h C-f") 'find-function)
@@ -380,6 +370,7 @@
 
 ;; js2-refactor-mode
 (js2r-add-keybindings-with-prefix "C-c C-r")
+
 
 ;; ledger mode
  (setq ledger-post-use-completion-engine :ido
@@ -609,18 +600,7 @@ Emacs lisp really need namespaces and closures.")
     (load-file private-file)))
 
 
-;; Custom theme
-(defun j/toggle-theme ()
-  "Switch b/w angel dark and light themes."
-  (interactive)
-  (if (member 'angel-dark custom-enabled-themes)
-      (progn
-        (disable-theme 'solarized-dark)
-        (disable-theme 'angel-dark)
-        (load-theme 'angel-light t))
-    (disable-theme 'angel-light)
-    (load-theme 'angel-dark t)))
-
+;;Customizations
 (if window-system
     (load-theme 'angel-light t))
 (custom-set-variables
@@ -641,3 +621,12 @@ Emacs lisp really need namespaces and closures.")
 (setq scroll-step 1)
 (setq linum-delay t)
 (setq scroll-conservatively 10000)
+
+;;Unwanted prompts removed
+(setq confirm-nonexistent-file-or-buffer nil)
+(setq ido-create-new-buffer 'always)
+(setq inhibit-startup-message t
+      inhibit-startup-echo-area-message t)
+(setq kill-buffer-query-functions
+      (remq 'process-kill-buffer-query-function
+            kill-buffer-query-functions))
