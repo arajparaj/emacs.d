@@ -129,7 +129,7 @@
 (global-unset-key (kbd "C-x C-z"))
 
 ;; Always split horizontally
-(setq split-width-threshold 0)
+(setq split-height-threshold most-positive-fixnum)
 
 ;; No bars and buttons on linux
 (menu-bar-mode -1)
