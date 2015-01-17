@@ -7,7 +7,7 @@ Emacs configuration files rebuild for Emacs 24.
 
 ### Screenshot
 
-![Screenshot](./screens/Emacs, Jan 16 2014.png)
+![Screenshot](./screens/Screenshot from 2015-01-11 22:45:15.png)
 
 ### Instructions
 
