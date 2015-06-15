@@ -66,9 +66,9 @@
 (require 'python-pep8)
 (require 'python-pylint)
 (require 'saveplace)
-(require 'server)
+;; (require 'server)
 (require 'uniquify)
-(require 'web-beautify)
+;; (require 'web-beautify)
 (require 'yasnippet)
 
 
@@ -77,7 +77,6 @@
 ;; -----------------
 (setq case-fold-search t
       column-number-mode t
-      default-major-mode 'org-mode
       inhibit-startup-message t
       initial-scratch-message nil
       ring-bell-function 'ignore
@@ -150,10 +149,10 @@
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.ledger\\'" . ledger-mode))
 (add-to-list 'auto-mode-alist '("\\.less\\'" . less-css-mode))
-(add-to-list 'auto-mode-alist '("\\.mako\\'" . html-mode))
+(add-to-list 'auto-mode-alist '("\\.html\\'" . html-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . css-mode))
-(add-to-list 'auto-mode-alist '("\\.txt\\'" . org-mode))
+;;(add-to-list 'auto-mode-alist '("\\.txt\\'" . org-mode))
 (add-to-list 'auto-mode-alist '("\\.wf\\'" . yaml-mode))
 (add-to-list 'auto-mode-alist '("mutt-.*-" . mail-mode))
 
@@ -242,7 +241,7 @@
 (ac-flyspell-workaround)
 (global-set-key (kbd "M-/") 'auto-complete)
 (add-to-list 'ac-modes 'git-commit-mode)
-(add-to-list 'ac-modes 'org-mode)
+;;(add-to-list 'ac-modes 'org-mode)
 
 ;; bookmarks
 (defun ido-bookmark-jump ()
@@ -392,56 +391,58 @@
 (add-hook 'magit-log-edit-mode-hook 'flyspell-mode)
 
 ;; org-mode
-(setq org-agenda-files `("~/Notes/todo.org" "~/Notes/work.org")
-      org-agenda-timegrid-use-ampm 1 ;; 12hr format for agenda view
-      org-default-notes-file "~/Notes/todo.org"
-      org-directory "~/Notes"
-      org-log-done 'time
-      org-return-follows-link t
-      org-src-fontify-natively t
-      org-startup-folded nil
-      org-capture-templates
-      '(("t" "Add personal todo" entry (file+headline "~/Notes/todo.org" "Tasks")
-         "* TODO %?\n  %i"
-         :kill-buffer t
-         :empty-lines 1)
 
-        ("w" "Add a work todo" entry (file+headline "~/Notes/work.org" "Tasks")
-         "* TODO %?\n  %i"
-         :kill-buffer t)
 
-        ("r" "Refile" plain (file "~/Notes/refile.org")
-         "%?\n %i"
-         :kill-buffer t)
+;; (setq org-agenda-files `("~/Notes/todo.org" "~/Notes/work.org")
+;;       org-agenda-timegrid-use-ampm 1 12hr format for agenda view
+;;       org-default-notes-file "~/Notes/todo.org"
+;;      org-directory "~/Notes"
+;;       org-log-done 'time
+;;       org-return-follows-link t
+;;       org-src-fontify-natively t
+;;       org-startup-folded nil
+;;       org-capture-templates
+;;       '(("t" "Add personal todo" entry (file+headline "~/Notes/todo.org" "Tasks")
+;;          "* TODO %?\n  %i"
+;;          :kill-buffer t
+;;          :empty-lines 1)
 
-        ("j" "Journal" plain (file (format "%s%s.org" "~/Notes/Journal/"
-                                           (format-time-string "%d %m %Y")))
-         "%U\n\n%?%i"
-         :kill-buffer t
-         :unnarrowed t
-         )))
+;;         ("w" "Add a work todo" entry (file+headline "~/Notes/work.org" "Tasks")
+;;          "* TODO %?\n  %i"
+;;          :kill-buffer t)
 
-(global-set-key (kbd "C-c a") 'org-agenda)
-(global-set-key (kbd "C-c r") 'org-capture)
+;;         ("r" "Refile" plain (file "~/Notes/refile.org")
+;;          "%?\n %i"
+;;          :kill-buffer t)
+
+;;         ("j" "Journal" plain (file (format "%s%s.org" "~/Notes/Journal/"
+;;                                            (format-time-string "%d %m %Y")))
+;;          "%U\n\n%?%i"
+;;          :kill-buffer t
+;;          :unnarrowed t
+;;          )))
+
+;; (global-set-key (kbd "C-c a") 'org-agenda)
+;; (global-set-key (kbd "C-c r") 'org-capture)
 ;; org-indent is messing up layout once in a while.
 ;; (add-hook 'org-mode-hook 'org-indent-mode)
 
 ;; org-present mode
-(defvar org-present-text-scale 10)
-(add-hook 'org-present-mode-hook (lambda ()
-                                   (linum-mode -1)
-                                   (org-present-big)
-                                   (org-display-inline-images)))
+;; (defvar org-present-text-scale 10)
+;; (add-hook 'org-present-mode-hook (lambda ()
+;;                                    (linum-mode -1)
+;;                                    (org-present-big)
+;;                                    (org-display-inline-images)))
 
-(add-hook 'org-present-mode-quit-hook (lambda ()
-                                        (linum-mode t)
-                                        (org-present-small)
-                                        (org-remove-inline-images)))
+;; (add-hook 'org-present-mode-quit-hook (lambda ()
+;;                                         (linum-mode t)
+;;                                         (org-present-small)
+;;                                         (org-remove-inline-images)))
 
 ;; Projectile mode
-(projectile-global-mode)
-(setq projectile-mode-line
-      (quote (:eval (format " [ρ %s]" (projectile-project-name)))))
+;; (projectile-global-mode)
+;; (setq projectile-mode-line
+;;       (quote (:eval (format " [ρ %s]" (projectile-project-name)))))
 
 
 ;; Python mode
@@ -475,7 +476,7 @@
 
 ;; prog-mode
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
-;; (add-hook 'prog-mode-hook 'fci-mode)
+(add-hook 'prog-mode-hook 'fci-mode)
 
 ;; Rectangle mode
 (defalias 'rectangle-insert-string 'string-insert-rectangle
@@ -505,19 +506,19 @@ Emacs lisp really need namespaces and closures.")
   (read-only-mode t))
 
 ;; server-mode
-(unless (server-running-p)
-  (server-start))
+;; (unless (server-running-p)
+;;   (server-start))
 
 ;; show parentheses
 (show-paren-mode t)
 
 ;; smex-mode
 ;; bind Caps-Lock to smex
-(when (eq window-system 'x)
-  (shell-command "xmodmap -e 'clear Lock' -e 'keycode 66 = F13'"))
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
-(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+;; (when (eq window-system 'x)
+;;   (shell-command "xmodmap -e 'clear Lock' -e 'keycode 66 = F13'"))
+;; (global-set-key (kbd "M-x") 'smex)
+;; (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+;; (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
 ;; snippets
 (yas-global-mode 1)
@@ -527,23 +528,23 @@ Emacs lisp really need namespaces and closures.")
 (add-hook 'text-mode-hook 'flyspell-mode)
 
 ;; tramp-mode
-(setq tramp-auto-save-directory "~/.emacs.d/auto-save-list"
-      tramp-completion-reread-directory-timeout nil
-      tramp-connection-timeout 30
-      tramp-default-host "localhost"
-      tramp-default-method "scp")
+;; (setq tramp-auto-save-directory "~/.emacs.d/auto-save-list"
+;;       tramp-completion-reread-directory-timeout nil
+;;       tramp-connection-timeout 30
+;;       tramp-default-host "localhost"
+;;       tramp-default-method "scp")
 
 ;; web-beautify mode
-(when (eq system-type 'darwin)
-  (setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH"))))
-(eval-after-load 'js2-mode
-  '(define-key js2-mode-map (kbd "C-c w") 'web-beautify-js))
-(eval-after-load 'json-mode
-  '(define-key json-mode-map (kbd "C-c w") 'web-beautify-js))
-(eval-after-load 'sgml-mode
-  '(define-key html-mode-map (kbd "C-c w") 'web-beautify-html))
-(eval-after-load 'css-mode
-  '(define-key css-mode-map (kbd "C-c w") 'web-beautify-css))
+;; (when (eq system-type 'darwin)
+;;   (setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH"))))
+;; (eval-after-load 'js2-mode
+;;   '(define-key js2-mode-map (kbd "C-c w") 'web-beautify-js))
+;; (eval-after-load 'json-mode
+;;   '(define-key json-mode-map (kbd "C-c w") 'web-beautify-js))
+;; (eval-after-load 'sgml-mode
+;;   '(define-key html-mode-map (kbd "C-c w") 'web-beautify-html))
+;; (eval-after-load 'css-mode
+;;   '(define-key css-mode-map (kbd "C-c w") 'web-beautify-css))
 
 ;; type over a region
 (pending-delete-mode t)
@@ -555,24 +556,24 @@ Emacs lisp really need namespaces and closures.")
 
 ;; The manual recommends C-c for user keys, but C-x t is always free,
 ;; whereas C-c t is used by some modes.
-(define-key ctl-x-map "t" 'j/toggle-map)
+;; (define-key ctl-x-map "t" 'j/toggle-map)
 
-(define-key j/toggle-map "-" 'toggle-truncate-lines)
-(define-key j/toggle-map "c" 'column-number-mode)
-(define-key j/toggle-map "d" 'toggle-debug-on-error)
-(define-key j/toggle-map "e" 'toggle-debug-on-error)
-(define-key j/toggle-map "f" 'auto-fill-mode)
-(define-key j/toggle-map "h" 'global-hl-line-mode)
-(define-key j/toggle-map "l" 'global-linum-mode)
-;; menu bar for exploring new modes
-(define-key j/toggle-map "m" 'menu-bar-mode)
-(define-key j/toggle-map "p" 'paredit-mode)
-(define-key j/toggle-map "q" 'toggle-debug-on-quit)
-(define-key j/toggle-map "t" 'j/toggle-theme)
-(define-key j/toggle-map "w" 'whitespace-mode)
-;; Generalized `read-only-mode'
-(define-key j/toggle-map "r" 'dired-toggle-read-only)
-(define-key j/toggle-map "|" 'fci-mode)
+;; (define-key j/toggle-map "-" 'toggle-truncate-lines)
+;; (define-key j/toggle-map "c" 'column-number-mode)
+;; (define-key j/toggle-map "d" 'toggle-debug-on-error)
+;; (define-key j/toggle-map "e" 'toggle-debug-on-error)
+;; (define-key j/toggle-map "f" 'autofill-mode)
+;; (define-key j/toggle-map "h" 'global-hl-line-mode)
+;; (define-key j/toggle-map "l" 'global-linum-mode)
+;; ;; menu bar for exploring new modes
+;; (define-key j/toggle-map "m" 'menu-bar-mode)
+;; (define-key j/toggle-map "p" 'paredit-mode)
+;; (define-key j/toggle-map "q" 'toggle-debug-on-quit)
+;; (define-key j/toggle-map "t" 'j/toggle-theme)
+;; (define-key j/toggle-map "w" 'whitespace-mode)
+;; ;; Generalized `read-only-mode'
+;; (define-key j/toggle-map "r" 'dired-toggle-read-only)
+;; (define-key j/toggle-map "|" 'fci-mode)
 
 (autoload 'dired-toggle-read-only "dired" nil t)
 
@@ -595,9 +596,9 @@ Emacs lisp really need namespaces and closures.")
 (load-file "~/.emacs.d/snippets.el")
 
 ;; Private setup, passwords and key
-(let ((private-file "~/.emacs.d/private.el"))
-  (when (file-readable-p private-file)
-    (load-file private-file)))
+;; (let ((private-file "~/.emacs.d/private.el"))
+;;   (when (file-readable-p private-file)
+;;     (load-file private-file)))
 
 
 ;;Customizations
@@ -618,9 +619,9 @@ Emacs lisp really need namespaces and closures.")
  )
 
 ;; Delay for scrolling
-(setq scroll-step 1)
-(setq linum-delay t)
-(setq scroll-conservatively 10000)
+(setq scroll-step 2)
+;; (setq linum-delay t)
+;; (setq scroll-conservatively 10000)
 
 ;;Unwanted prompts removed
 (setq confirm-nonexistent-file-or-buffer nil)
