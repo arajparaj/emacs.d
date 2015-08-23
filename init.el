@@ -34,6 +34,8 @@
 
 ;; Install all packages required
 (load-file "~/.emacs.d/elpa-list.el")
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/rails-minor-mode"))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/rhtml-minor-mode"))
 
 (package-initialize)
 
@@ -66,10 +68,13 @@
 (require 'python-pep8)
 (require 'python-pylint)
 (require 'saveplace)
-;; (require 'server)
+(require 'server)
 (require 'uniquify)
 ;; (require 'web-beautify)
 (require 'yasnippet)
+(require 'rails)
+(require 'rhtml-mode)
+(require 'yaml-mode)
 
 
 ;; -----------------
@@ -128,12 +133,12 @@
 (global-unset-key (kbd "C-x C-z"))
 
 ;; Always split horizontally
-(setq split-height-threshold most-positive-fixnum)
+(setq split-width-threshold most-negative-fixnum)
 
 ;; No bars and buttons on linux
 (menu-bar-mode -1)
 (tool-bar-mode -1)
-(scroll-bar-mode -1)
+;;(scroll-bar-mode -1)
 
 
 ;; backup files
@@ -506,8 +511,8 @@ Emacs lisp really need namespaces and closures.")
   (read-only-mode t))
 
 ;; server-mode
-;; (unless (server-running-p)
-;;   (server-start))
+(unless (server-running-p)
+  (server-start))
 
 ;; show parentheses
 (show-paren-mode t)
@@ -600,24 +605,6 @@ Emacs lisp really need namespaces and closures.")
 ;;   (when (file-readable-p private-file)
 ;;     (load-file private-file)))
 
-
-;;Customizations
-(if window-system
-    (load-theme 'angel-light t))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (angel-dark)))
- '(custom-safe-themes (quote ("6a0aa8328d95b9a05b42d463c2a406b71dd3c3076321f9c38bd87c5340c7669c" default))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
 ;; Delay for scrolling
 (setq scroll-step 2)
 ;; (setq linum-delay t)
@@ -631,3 +618,20 @@ Emacs lisp really need namespaces and closures.")
 (setq kill-buffer-query-functions
       (remq 'process-kill-buffer-query-function
             kill-buffer-query-functions))
+(load-theme 'ample t t)
+(load-theme 'ample-flat t t)
+(load-theme 'ample-light t t)
+
+(enable-theme 'ample-flat)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes (quote ("c006bc787154c31d5c75e93a54657b4421e0b1a62516644bd25d954239bc9933" default))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
